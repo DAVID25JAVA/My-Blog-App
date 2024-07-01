@@ -36,7 +36,7 @@ export function Signup() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
+    <div className="flex items-center justify-center min-h-screen px-4">
       <div className="mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10">
         <div className="mb-2 flex justify-center">
           <span className="inline-block max-w-[100px] w-32">
@@ -101,7 +101,7 @@ export function Signup() {
                   required: true,
                 })}
               />
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="w-full my-5">
                 Create Account
               </Button>
             </div>
