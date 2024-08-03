@@ -7,7 +7,7 @@ import Button from "../Button";
 import Input from "../Input";
 import RTE from "../RTE";
 import Select from "../Select";
-import {FadeLoader} from 'react-spinners'
+import { FadeLoader } from 'react-spinners';
 
 function FormPost({ post }) {
   const [loader, setLoader] = useState(false);
@@ -27,26 +27,28 @@ function FormPost({ post }) {
   const submit = async (data) => {
     setLoader(true);
     try {
-      if (post) {
-        const file = data.image[0]
-          ? await databaseService.fileUpload(data.image[0])
-          : null;
+      let file = null;
+      if (data.image && data.image[0]) {
+        file = await databaseService.fileUpload(data.image[0]);
+        if (!file) {
+          throw new Error("File upload failed");
+        }
+      }
 
-        if (file) {
-          databaseService.deleteFile(post.featuredImage);
+      if (post) {
+        if (file && post.featuredImage) {
+          await databaseService.deleteFile(post.featuredImage);
         }
 
         const dbPost = await databaseService.updatePost(post.$id, {
           ...data,
-          featuredImage: file ? file.$id : undefined,
+          featuredImage: file ? file.$id : post.featuredImage,
         });
 
         if (dbPost) {
           navigate(`/post/${dbPost.$id}`);
         }
       } else {
-        const file = await databaseService.fileUpload(data.image[0]);
-
         if (file) {
           const fileId = file.$id;
           data.featuredImage = fileId;
@@ -60,6 +62,8 @@ function FormPost({ post }) {
           }
         }
       }
+    } catch (error) {
+      console.error("Error in form submission:", error);
     } finally {
       setLoader(false);
     }
@@ -88,7 +92,7 @@ function FormPost({ post }) {
 
   return (
     <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
-      {loader && <div className="mx-auto "  ><FadeLoader  color="#36d7b7"/></div>}
+      {loader && <div className="mx-auto"><FadeLoader color="#36d7b7" /></div>}
       {!loader && (
         <>
           <div className="w-2/3 px-2">

@@ -36,11 +36,11 @@ export default function Post() {
   return post ? (
     <div className="py-8">
       <Container>
-        <div className="w-1/2 flex justify-center ms-80 mb-4 relative border rounded-xl p-2">
+        <div className="max-w-2xl mx-auto mb-4 relative border rounded-xl p-2">
           <img
             src={databaseService.getFilePreview(post.featuredImage)}
             alt={post.title}
-            className="rounded-xl"
+            className="rounded-xl w-full"
           />
 
           {isAuthor && (
@@ -56,10 +56,12 @@ export default function Post() {
             </div>
           )}
         </div>
-        <div className="w-1/2 mb-6 ms-80">
+        <div className="max-w-2xl mx-auto mb-6">
           <h1 className="text-2xl font-bold text-white">{post.title}</h1>
         </div>
-        <div className="browser-css ms-80 text-white font-serif">{parse(post.content)}</div>
+        <div className="max-w-2xl mx-auto text-white font-serif">
+          {parse(post.content)}
+        </div>
       </Container>
     </div>
   ) : null;
