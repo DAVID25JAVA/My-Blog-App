@@ -1,10 +1,8 @@
 import React from "react";
-import { Editor } from "@tinymce/tinymce-react";
+import {Editor} from '@tinymce/tinymce-react'
 import { Controller } from "react-hook-form";
 
 function RTE({ name, control, label, defaultValue = "" }) {
-   
-
   return (
     <div className="w-full">
       {label && (
@@ -21,9 +19,9 @@ function RTE({ name, control, label, defaultValue = "" }) {
             initialValue={defaultValue}
             apiKey="x4tihygda7nam4cbor0g4c3t0zzwwopjw249tzg4pkj2n07p"
             init={{
-              
               height: 500,
               menubar: true,
+              readonly: false,
               plugins: [
                 "image",
                 "advlist",
