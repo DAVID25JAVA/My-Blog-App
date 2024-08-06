@@ -30,7 +30,6 @@ function RTE({ name, control, label, defaultValue = "" }) {
                 "autolink",
                 "lists",
                 "link",
-                "image",
                 "charmap",
                 "preview",
                 "anchor",
