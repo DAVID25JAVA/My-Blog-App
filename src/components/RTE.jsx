@@ -1,12 +1,12 @@
 import React from "react";
-import {Editor} from '@tinymce/tinymce-react'
+import { Editor } from '@tinymce/tinymce-react';
 import { Controller } from "react-hook-form";
 
 function RTE({ name, control, label, defaultValue = "" }) {
   return (
-    <div className="w-full">
+    <div className="w-full p-4 bg-white rounded-lg shadow-md">
       {label && (
-        <label className="inline-block mb-1 pl-1 text-white font-serif">
+        <label className="block mb-2 text-lg font-bold text-gray-700">
           {label}
         </label>
       )}
@@ -49,6 +49,7 @@ function RTE({ name, control, label, defaultValue = "" }) {
                 "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
             }}
             onEditorChange={onChange}
+            className="w-full h-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500"
           />
         )}
       />

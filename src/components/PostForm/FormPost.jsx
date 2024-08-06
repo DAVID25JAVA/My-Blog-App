@@ -91,11 +91,11 @@ function FormPost({ post }) {
   }, [watch, slugTransform, setValue]);
 
   return (
-    <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
-      {loader && <div className="mx-auto"><FadeLoader color="#36d7b7" /></div>}
+    <form onSubmit={handleSubmit(submit)} className="flex flex-col lg:flex-row flex-wrap">
+      {loader && <div className="w-full flex justify-center mb-4"><FadeLoader color="#36d7b7" /></div>}
       {!loader && (
         <>
-          <div className="w-2/3 px-2">
+          <div className="lg:w-2/3 w-full px-2 mb-4 lg:mb-0">
             <Input
               label="Title :"
               placeholder="Title"
@@ -120,7 +120,7 @@ function FormPost({ post }) {
               defaultValue={getValues("content")}
             />
           </div>
-          <div className="w-1/3 px-2">
+          <div className="lg:w-1/3 w-full px-2">
             <Input
               label="Featured Image :"
               type="file"
@@ -133,7 +133,7 @@ function FormPost({ post }) {
                 <img
                   src={databaseService.getFilePreview(post.featuredImage)}
                   alt={post.title}
-                  className="rounded-lg"
+                  className="rounded-lg w-full object-cover"
                 />
               </div>
             )}
